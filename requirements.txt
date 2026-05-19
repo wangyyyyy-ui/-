@@ -1,0 +1,48 @@
+# ============================================================
+# 依赖包列表
+# ============================================================
+# 核心框架
+torch>=2.0.0
+torchvision>=0.15.0
+ultralytics>=8.1.0              # YOLOv10 / RT-DETR
+
+# 人脸识别
+insightface>=0.7.3              # ArcFace人脸识别
+onnxruntime-gpu>=1.16.0         # InsightFace推理后端
+
+# 姿态估计
+mediapipe>=0.10.9               # Face Mesh / Pose
+
+# 视频处理
+opencv-python>=4.8.0            # 视频读写与图像处理
+opencv-contrib-python>=4.8.0    # 扩展模块
+
+# 数据处理
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+
+# 可视化
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# 配置管理
+pyyaml>=6.0
+
+# 日志与工具
+tqdm>=4.65.0
+loguru>=0.7.0
+
+# 评估工具
+motmetrics>=1.2.0               # MOT评估
+
+# 可选: ByteTrack原生实现
+# bytetrack>=0.1.0
+
+# 可选: SAM分割
+# segment-anything>=1.0
+
+# 开发工具
+pytest>=7.4.0
+black>=23.0.0
+flake8>=6.0.0
