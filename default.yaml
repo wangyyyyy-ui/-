@@ -1,0 +1,82 @@
+# ============================================================
+# 课堂多目标视觉感知与学习状态分析系统 - 默认配置
+# ============================================================
+
+# 视频配置
+video:
+  source: "0"                    # 视频源: 文件路径或摄像头索引
+  sample_interval: 1             # 帧采样间隔 (1=每帧处理)
+  target_size: null              # 目标分辨率 [width, height], null=原始
+
+# 预处理配置
+preprocessing:
+  brightness: 1.0                # 亮度因子
+  contrast: 1.0                  # 对比度因子
+  denoise_strength: 5            # 去噪强度
+  clahe_clip: 2.5                # CLAHE裁剪限制
+  auto_enhance: true             # 自动增强模式
+
+# 目标检测配置
+detection:
+  model: "yolov10s"              # 检测模型: yolov10n/s/m/l/x
+  conf_threshold: 0.25           # 置信度阈值
+  iou_threshold: 0.45            # NMS IoU阈值
+  device: "cuda"                 # 推理设备: cpu/cuda/0
+  target_classes: [0]            # 目标类别 (0=person in COCO)
+
+# 多目标跟踪配置
+tracking:
+  track_thresh: 0.5              # 高置信度阈值
+  track_buffer: 30               # 轨迹缓冲帧数
+  match_thresh: 0.8              # 匹配IoU阈值
+
+# 人脸识别配置
+face_recognition:
+  model: "buffalo_l"             # InsightFace模型
+  threshold: 0.4                 # 匹配相似度阈值
+  det_size: [640, 640]           # 人脸检测尺寸
+  db_path: "data/face_db"        # 特征库路径
+
+# 头部姿态估计配置
+head_pose:
+  method: "mediapipe"            # 估计方法: mediapipe/opencv
+  pitch_down_thresh: 15.0        # 低头判定阈值(度)
+  pitch_up_thresh: 10.0          # 抬头判定阈值(度)
+  yaw_thresh: 30.0               # 侧转判定阈值(度)
+  model_complexity: 1            # MediaPipe模型复杂度
+
+# 身体姿态估计配置
+body_pose:
+  enabled: false                 # 是否启用(较耗时)
+  model_complexity: 1            # MediaPipe模型复杂度
+
+# 状态分析配置
+state_analysis:
+  head_down_pitch: 15.0          # 低头阈值
+  distracted_yaw: 30.0           # 分心阈值
+  track_lost_frames: 30          # 离座判定帧数
+
+# 时序融合配置
+temporal_fusion:
+  window_size: 15                # 滑动窗口大小
+  leave_seat_threshold: 30       # 离座判定帧数
+
+# 可视化配置
+visualization:
+  show_bbox: true                # 显示检测框
+  show_id: true                  # 显示跟踪ID
+  show_identity: true            # 显示身份标签
+  show_state: true               # 显示状态标签
+  show_pose: false               # 显示姿态
+  show_stats: true               # 显示统计面板
+  show_heatmap: false            # 显示热力图
+  font_scale: 0.6                # 字体大小
+  line_thickness: 2              # 线条粗细
+
+# 输出配置
+output:
+  dir: "outputs"                 # 输出目录
+  save_video: true               # 保存标注视频
+  save_stats: true               # 保存统计数据
+  display: true                  # 实时显示
+  display_fps: true              # 显示FPS
